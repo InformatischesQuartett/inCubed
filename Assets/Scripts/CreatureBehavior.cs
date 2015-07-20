@@ -19,6 +19,7 @@ public class CreatureBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //check for collision before walk, if collided --> new waypoint
         transform.position += transform.TransformDirection(Vector3.forward) * speed * Time.deltaTime;
         if ((transform.position - waypoint).magnitude < 3)
         {
