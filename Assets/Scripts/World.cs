@@ -7,22 +7,26 @@ public class World : MonoBehaviour
 	// Use this for initialization
     private void Start()
     {
+        sides[0] = Instantiate(Resources.Load("Prefabs/25kpoly") as GameObject);
+        sides[0].transform.parent = this.transform;
+        sides[0].name = "25kpoly";
+
         for (int i = 0; i < sides.Length; i++)
         {
             if (sides[i] == null)
             {
-                sides[i] = Instantiate(Resources.Load("Prefabs/GenericSide") as GameObject);
+                sides[i] = Instantiate(Resources.Load("Prefabs/DummySide" + (i+1)) as GameObject);
                 sides[i].transform.parent = this.transform;
                 sides[i].name = "Side" + i;
             }
         }
 
         //Front Side
-        sides[0].transform.position = new Vector3(0, 0, 100);
+        sides[0].transform.position = new Vector3(0, 0, 84);
         sides[0].transform.Rotate(new Vector3(-90, 0, 0));
 
         //Back Side
-        sides[1].transform.position = new Vector3(0, 0, -100);
+        sides[1].transform.position = new Vector3(0, 0, -92);
         sides[1].transform.Rotate(new Vector3(90, 0, 0));
 
         //Right
@@ -34,7 +38,7 @@ public class World : MonoBehaviour
         sides[3].transform.Rotate(new Vector3(0, 0, -90));
 
         //Top
-        sides[4].transform.position = new Vector3(0, 100, 0);
+        sides[4].transform.position = new Vector3(0, 97, 0);
         sides[4].transform.Rotate(180, 0, 0);
 
         //Bottom
