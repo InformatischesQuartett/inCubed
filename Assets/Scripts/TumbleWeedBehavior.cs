@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CreatureBehavior : MonoBehaviour {
+public class TumbleWeedBehavior : MonoBehaviour {
 
     private float _walkSpeed;
     private float _jumpSpeed;
@@ -21,8 +21,9 @@ public class CreatureBehavior : MonoBehaviour {
     private float _rayLength;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         _range = 10;
         _walkSpeed = 3;
         _jumpSpeed = 100.0f;
@@ -33,29 +34,28 @@ public class CreatureBehavior : MonoBehaviour {
 
         //set idle and walk time
         setNewTime();
-        
+
         //overall timer
         _timer = 0;
 
         //initialize first Waypoint
         getNewWayPoint();
-	}
-	
-	// Update is called once per frame
-	void Update () 
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-
-
 
         checkCollision();
         walk();
         
-	}
+
+    }
 
     void FixedUpdate()
     {
         _timer += Time.fixedDeltaTime;
-    
+
     }
 
     private void getNewWayPoint()
@@ -77,15 +77,16 @@ public class CreatureBehavior : MonoBehaviour {
         {
             transform.position += transform.TransformDirection(Vector3.forward) * _walkSpeed * Time.deltaTime;
             _jumpMode = true;
-            jump();
+            roll();
             
+
         }
 
         //tell when creature is in idle Mode
         if (_timer > _walkTime && _timer <= (_walkTime + _idleTime))
         {
             _idleMode = true;
-            
+
         }
 
         //reset timer after one walk and idle cycle is done
@@ -107,32 +108,14 @@ public class CreatureBehavior : MonoBehaviour {
 
     }
 
-    private void jump()
+    private void roll()
     {
 
-        //if (this.transform.position.y <= _jumpHeight && _jumpMode == true)
-        if (_jumpMode)
-        {
-            _jumpMode = false;
-            //this.transform.Translate(Vector3.up * _jumpSpeed * Time.deltaTime);
-        }
-        else
-        {
-            this.transform.Translate(Vector3.down * Time.deltaTime);
-            _jumpMode = true;
-        }
-        //after reaching height, set jumpode to false
-        //if (this.transform.position.y > _jumpHeight && this.transform.position.y > 0)
-        //{
-        //    _jumpMode = false;
-        //    this.transform.Translate(Vector3.up * Time.deltaTime);
-        //}
-        Debug.Log(this.transform.position.y);
+        transform.Find("Ball").Rotate(Vector3.right * Time.deltaTime * 50f);
     }
 
     private void checkCollision()
     {
-
         if (Physics.SphereCast(new Ray(transform.position + 0.1f * transform.forward, transform.forward), 1, _rayLength))
         {
             Debug.Log("I've hit something.");
