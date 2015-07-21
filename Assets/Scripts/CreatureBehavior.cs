@@ -3,20 +3,33 @@ using System.Collections;
 
 public class CreatureBehavior : MonoBehaviour {
 
-    private float _speed;
+    private float _walkSpeed;
+    private float _jumpSpeed;
+    private float _jumpHeight;
+
     private int _range;
     private Vector3 _waypoint;
 
+
     private float _timer;
     private bool _idleMode;
+    private bool _jumpMode;
 
     private float _walkTime;
     private float _idleTime;
 
+    private float _rayLength;
+
+
 	// Use this for initialization
 	void Start () {
         _range = 10;
-        _speed = 3;
+        _walkSpeed = 3;
+        _jumpSpeed = 100.0f;
+        _rayLength = 0.5f;
+
+        _jumpMode = false;
+        _jumpHeight = 2;
 
         //set idle and walk time
         setNewTime();
@@ -31,6 +44,15 @@ public class CreatureBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        
+
+        //if (Physics.Raycast(transform.position + transform.forward, transform.forward, _rayLength))
+        if (Physics.SphereCast(new Ray(transform.position + 0.1f * transform.forward, transform.forward), 1,  _rayLength))
+        {
+            Debug.Log("I've hit something.");
+            getNewWayPoint();
+        }
+
         walk();
         
 	}
@@ -58,7 +80,10 @@ public class CreatureBehavior : MonoBehaviour {
         //walk as long as the timer suggests
         if (_timer <= _walkTime)
         {
-            transform.position += transform.TransformDirection(Vector3.forward) * _speed * Time.deltaTime;
+            transform.position += transform.TransformDirection(Vector3.forward) * _walkSpeed * Time.deltaTime;
+            _jumpMode = true;
+            jump();
+            
         }
 
         //tell when creature is in idle Mode
@@ -87,6 +112,29 @@ public class CreatureBehavior : MonoBehaviour {
 
     }
 
+    private void jump()
+    {
+
+        //if (this.transform.position.y <= _jumpHeight && _jumpMode == true)
+        if (_jumpMode)
+        {
+            _jumpMode = false;
+            //this.transform.Translate(Vector3.up * _jumpSpeed * Time.deltaTime);
+        }
+        else
+        {
+            this.transform.Translate(Vector3.down * Time.deltaTime);
+            _jumpMode = true;
+        }
+        //after reaching height, set jumpode to false
+        //if (this.transform.position.y > _jumpHeight && this.transform.position.y > 0)
+        //{
+        //    _jumpMode = false;
+        //    this.transform.Translate(Vector3.up * Time.deltaTime);
+        //}
+        Debug.Log(this.transform.position.y);
+    }
+
     private void checkCollision()
     {
 
@@ -98,7 +146,6 @@ public class CreatureBehavior : MonoBehaviour {
     private void setNewTime()
     {
         _walkTime = Random.Range(2, 7);
-        //_walkTime = 3;
         _idleTime = Random.Range(2, 5);
     }
 }
