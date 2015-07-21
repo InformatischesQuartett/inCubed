@@ -4,9 +4,13 @@ public class World : MonoBehaviour
 {
     private GameObject[] sides = new GameObject[6];
 
+    private InputGamepad inputGamepad;
+
 	// Use this for initialization
     private void Start()
     {
+        inputGamepad = GameObject.Find("CardboardMain").GetComponent<InputGamepad>();
+
         sides[0] = Instantiate(Resources.Load("Prefabs/25kpoly") as GameObject);
         sides[0].transform.parent = this.transform;
         sides[0].name = "25kpoly";
@@ -47,6 +51,7 @@ public class World : MonoBehaviour
 
     // Update is called once per frame
 	void Update () {
-	
-	}
+        this.transform.Rotate(inputGamepad.JoystickAxes["LS Y"], inputGamepad.JoystickAxes["LS X"], 0);
+    
+    }
 }
