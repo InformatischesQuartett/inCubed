@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class InputLayer : MonoBehaviour
+public class InputGamepad : MonoBehaviour
 {
     public Dictionary<string, bool> JoystickButtons { get; private set; }
     public Dictionary<string, float> JoystickAxes { get; private set; }
