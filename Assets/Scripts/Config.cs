@@ -1,5 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
+
+public enum SHAPETYPE
+{
+    None = -1,
+    Triangle,
+    Rectangle,
+    Pentagon,
+    Heptagon,
+    Circle,
+    Star
+}
 
 public static class Config
 {
@@ -12,7 +22,6 @@ public static class Config
 
     public static float triggerTimer = 5f;
     public static float travelTime = 5f;
-
 
     static Config()
     {

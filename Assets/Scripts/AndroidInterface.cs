@@ -1,38 +1,32 @@
 ﻿using UnityEngine;
 
-public enum SHAPETYPE
-{
-    None=-1,
-    Triangle,
-    Rectangle,
-    Pentagon,
-    Heptagon,
-    Circle,
-    Star
-}
+
 
 public class AndroidInterface : MonoBehaviour
 {
+    public GameObject Plane;
+
     private AndroidJavaObject _toastExample;
     private AndroidJavaObject _activityContext;
     private AndroidJavaClass _pluginClass;
 
     private float _alpha;
     private float _curAlpha;
-    private float _minThreshold;
-    private float _maxThreshold;
     private SHAPETYPE _lastShape;
     private Vector2 _lastShapePos;
 
-    public Texture2D FadeOutTexture;
+    private float _rotSpeed;
     private Texture2D _webcamTex;
+
+    private const int MaxRotSpeed = 200;
+    private const float SpeedIncrease = 1.005f;
 
     private void Start()
     {
+        _rotSpeed = 1;
+
         _alpha = 1;
         _curAlpha = -1;
-        _minThreshold = 10;
-        _maxThreshold = 10;
 
         AndroidJavaClass ajc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject ajo = ajc.GetStatic<AndroidJavaObject>("currentActivity");
@@ -51,6 +45,13 @@ public class AndroidInterface : MonoBehaviour
             _alpha = (float) _toastExample.Call<double>("GetAvgBrightness");
             _curAlpha = _curAlpha < 0 ? _alpha : Mathf.Lerp(_curAlpha, _alpha, Time.deltaTime);
         }
+
+        _rotSpeed *= 1.01f;
+
+        if (_rotSpeed < MaxRotSpeed)
+            _rotSpeed *= SpeedIncrease;
+
+        Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed * Time.deltaTime);
     }
 
     public void NewData(string dummy)
@@ -61,6 +62,8 @@ public class AndroidInterface : MonoBehaviour
         {
             _webcamTex.LoadRawTextureData(data);
             _webcamTex.Apply();
+
+            Plane.GetComponent<Renderer>().material.mainTexture = _webcamTex;
         }
     }
 
@@ -73,11 +76,5 @@ public class AndroidInterface : MonoBehaviour
             var shapePos = _toastExample.Call<double[]>("GetShapePosition");
             _lastShapePos = new Vector2((float) shapePos[0], (float) shapePos[1]);
         }
-    }
-
-    public void OnGUI()
-    {
-        if (_webcamTex != null)
-            GUI.DrawTexture(new Rect(0, Screen.height, Screen.width, -Screen.height), _webcamTex);
     }
 }
