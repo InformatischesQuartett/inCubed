@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
 
@@ -8,7 +9,10 @@ public class IntroBehavior : MonoBehaviour {
         Loading,
         Calibration,
         Transport,
-        Wormhole
+        Wormhole,
+        Story,
+        StoryStay,
+        Start
     }
 
     // TODO: not public, use find and stuff
@@ -17,11 +21,14 @@ public class IntroBehavior : MonoBehaviour {
     public GameObject LoadingRect;
     public GameObject CalibRect;
     public Text TimeText;
+    public GameObject StoryPlane;
 
     private IntroState _introState;
 
     private float _rotSpeed;
     private float _starTime;
+    private int _storyPlaneId;
+    private Vector3 _tempTargetPos;
 
     private float _lastDataCheck;
     private Texture2D _webcamTex;
@@ -37,6 +44,13 @@ public class IntroBehavior : MonoBehaviour {
     private const float SaturationDecrease = 0.25f;
     private const float RampIncrease = 0.25f;
 
+    private readonly Vector3 _bgPlaneTargetPos = new Vector3(0, 0, -7.5f);
+    private readonly Vector3 _planeStartPos = new Vector3(0f, 0f, -8.5f);
+    private readonly Vector3 _planeOddPos = new Vector3(-20f, 0f, -8.5f);
+    private readonly Vector3 _planeEvenPos = new Vector3(20f, 0f, -8.5f);
+    private readonly Vector3 _planeTargetSize = new Vector3(0.3f, 1, 0.169f);
+    private readonly Vector3 _planeTargetSizeMax = new Vector3(1.00f, 1, 0.562f);
+
     private void Start()
     {
         _introState = IntroState.Loading;
@@ -44,6 +58,7 @@ public class IntroBehavior : MonoBehaviour {
 
         _rotSpeed = 10;
         _lastDataCheck = -1;
+        _storyPlaneId = 1;
 
         //_webcamTex = new Texture2D(1920, 1080, TextureFormat.RGBA32, false);
         _webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
@@ -56,6 +71,12 @@ public class IntroBehavior : MonoBehaviour {
 
         _twirlScript = GetComponent<Twirl>();
         _twirlScript.enabled = false;
+
+        StoryPlane.transform.localScale = new Vector3(0.0001f, 0, 0.0001f);
+        _tempTargetPos = new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), _planeStartPos.z);
+
+        var nextTex = Resources.Load<Texture2D>("Textures/Story/Story1");
+        StoryPlane.GetComponent<Renderer>().material.mainTexture = nextTex;
     }
 
     private void Update()
@@ -110,6 +131,8 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Transport:
+                Plane.transform.position = Vector3.Lerp(Plane.transform.position, _bgPlaneTargetPos, Time.deltaTime);
+
                 _rotSpeed *= SpeedIncrease;
 
                 if (_rotSpeed < MaxRotSpeed)
@@ -117,23 +140,23 @@ public class IntroBehavior : MonoBehaviour {
 
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
-                _twirlScript.angle += AngleIncrease * Time.deltaTime;
+                _twirlScript.angle += AngleIncrease*Time.deltaTime;
 
                 if (_cccScript.saturation >= 0)
-                    _cccScript.saturation -= SaturationDecrease * Time.deltaTime;
+                    _cccScript.saturation -= SaturationDecrease*Time.deltaTime;
                 else
                 {
                     if (!_grayScript.enabled)
                         _grayScript.enabled = true;
 
-                    _grayScript.rampOffset += RampIncrease * Time.deltaTime;
+                    _grayScript.rampOffset += RampIncrease*Time.deltaTime;
                 }
 
                 if (_grayScript.rampOffset > 1.0f)
                 {
                     _planeRenderer.material.mainTexture = WormholeTex;
                     _introState = IntroState.Wormhole;
-                    _rotSpeed = 5;
+                    _rotSpeed = 3;
                 }
 
                 break;
@@ -142,23 +165,87 @@ public class IntroBehavior : MonoBehaviour {
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
                 if (_grayScript.rampOffset >= 0)
-                    _grayScript.rampOffset -= RampIncrease * Time.deltaTime;
+                    _grayScript.rampOffset -= RampIncrease*Time.deltaTime;
                 else
                 {
                     if (_grayScript.enabled)
                         _grayScript.enabled = false;
 
-                    if (_cccScript.saturation < 1)
-                        _cccScript.saturation += SaturationDecrease * Time.deltaTime;
+                    if (_cccScript.saturation < 0.4f)
+                        _cccScript.saturation += SaturationDecrease*Time.deltaTime;
                     else
-                        _cccScript.saturation = 1;
+                        _cccScript.saturation = 0.45f;
                 }
 
-                if (_twirlScript.angle - AngleIncrease * Time.deltaTime > 0)
-                    _twirlScript.angle -= AngleIncrease * Time.deltaTime;
+                if (_twirlScript.angle - AngleIncrease*Time.deltaTime > 0)
+                    _twirlScript.angle -= AngleIncrease*Time.deltaTime;
                 else
                     _twirlScript.enabled = false;
 
+                if (_cccScript.saturation > 0.4f && !_twirlScript.enabled)
+                    _introState = IntroState.Story;
+
+                break;
+
+            case IntroState.Story:
+                Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed * Time.deltaTime);
+
+                StoryPlane.transform.localScale = Vector3.Lerp(StoryPlane.transform.localScale,
+                    _planeTargetSize, Time.deltaTime);
+
+                if (StoryPlane.transform.localScale.x >= 0.14f)
+                {
+                    _starTime = Time.realtimeSinceStartup;
+                    _introState = IntroState.StoryStay;
+                }
+
+                break;
+
+            case IntroState.StoryStay:
+                Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed * Time.deltaTime);
+
+                if (Time.realtimeSinceStartup - _starTime > 5)
+                {
+                    StoryPlane.transform.localScale = Vector3.Lerp(StoryPlane.transform.localScale,
+                        _planeTargetSizeMax, Time.deltaTime);
+                    StoryPlane.transform.position = Vector3.Lerp(StoryPlane.transform.position,
+                        _storyPlaneId%2 == 0 ? _planeOddPos : _planeEvenPos, Time.deltaTime);
+
+                    if (StoryPlane.transform.localScale.x >= 0.34f)
+                    {
+                        if (_storyPlaneId == 3)
+                            _storyPlaneId = 1;
+
+                        if (_storyPlaneId < 5)
+                        {
+                            _storyPlaneId++;
+
+                            StoryPlane.transform.position = _planeStartPos;
+                            StoryPlane.transform.localScale = new Vector3(0.0001f, 0, 0.0001f);
+
+                            var nextTex = Resources.Load<Texture2D>("Textures/Story/Story" + _storyPlaneId);
+                            StoryPlane.GetComponent<Renderer>().material.mainTexture = nextTex;
+
+                            _introState = IntroState.Story;
+                        }
+                        else
+                            _introState = IntroState.Start;
+                    }
+                }
+                else
+                {
+                    StoryPlane.transform.localPosition = Vector3.Lerp(StoryPlane.transform.localPosition,
+                        _tempTargetPos, Time.deltaTime * 2);
+
+                    var dist = Vector3.Distance(StoryPlane.transform.localPosition, _tempTargetPos);
+                    if (dist < 0.001f)
+                        _tempTargetPos = new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), _planeStartPos.z);
+                }
+
+                break;
+
+            case IntroState.Start:
+                // Application.LoadLevel();
                 break;
         }
     }
