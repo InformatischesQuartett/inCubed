@@ -9,6 +9,8 @@ public class TriggerTarget : MonoBehaviour
     private bool ready;
     private bool triggered;
 
+    private GameObject parent;
+
     private void EventTrigger()
     {
         this.GetComponent<Collider>().enabled = false;
@@ -49,5 +51,21 @@ public class TriggerTarget : MonoBehaviour
                 this.GetComponent<Collider>().enabled = true;
             }
         }
+    }
+
+    private void DeactivateTrigger()
+    {
+        this.GetComponent<Collider>().enabled = false;
+    }
+
+    private void ActivateTrigger()
+    {
+        this.GetComponent<Collider>().enabled = true;
+    }
+
+    private void RegisterTrigger(GameObject sender)
+    {
+        parent = sender;
+        sender.SendMessage("TriggerReg", this.gameObject);
     }
 }

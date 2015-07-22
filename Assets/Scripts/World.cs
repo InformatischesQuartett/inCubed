@@ -9,6 +9,8 @@ public class World : MonoBehaviour
 	// Use this for initialization
     private void Start()
     {
+        Config.World = this.gameObject;
+
         inputGamepad = GameObject.Find("CardboardMain").GetComponent<InputGamepad>();
 
         sides[0] = Instantiate(Resources.Load("Prefabs/25kpoly") as GameObject);
@@ -19,7 +21,7 @@ public class World : MonoBehaviour
         {
             if (sides[i] == null)
             {
-                sides[i] = Instantiate(Resources.Load("Prefabs/DummySide" + (i+1)) as GameObject);
+                sides[i] = Instantiate(Resources.Load("Prefabs/DummySide" + (i)) as GameObject);
                 sides[i].transform.parent = this.transform;
                 sides[i].name = "Side" + i;
             }
@@ -51,7 +53,7 @@ public class World : MonoBehaviour
 
     // Update is called once per frame
 	void Update () {
-        this.transform.Rotate(inputGamepad.JoystickAxes["LS Y"], inputGamepad.JoystickAxes["LS X"], 0);
+//        this.transform.Rotate(inputGamepad.JoystickAxes["LS Y"], inputGamepad.JoystickAxes["LS X"], 0);
     
     }
 }
