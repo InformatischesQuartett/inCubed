@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: df5eb07564ad56942865e0fde2e2e211
-timeCreated: 1437518914
+guid: 41f1ce27e5344e644acee8dedbcb2006
+timeCreated: 1437563102
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Kegel_1
+    4300000: Ebene
     9500000: //RootNode
   materials:
     importMaterials: 1
