@@ -21,9 +21,11 @@ public static class Config
     public static bool DebugRayTrigger = true;
     public static bool ShowFps = true;
 
-    public static float triggerTimer = 5f;
+    public static float triggerTimer = 1.3f;
     public static float travelTime = 5f;
 
+    public static GameObject World { get; set; }
+    
     public static AndroidJavaObject OpenCVPlugin;
     public static AndroidJavaClass PluginClass;
 
@@ -37,6 +39,7 @@ public static class Config
     {
         GameStates = new Dictionary<string, bool>();
         GameStates.Add("gameStarted", true);
+        GameStates.Add("Bla", false);
 
 #if !UNITY_EDITOR
         PluginClass = new AndroidJavaClass("com.Company.inCubed.CamHandler");

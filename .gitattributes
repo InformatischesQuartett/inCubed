@@ -64,6 +64,7 @@ WHATSNEW*          text
 *.unity            text eol=lf
 *.asset            text eol=lf
 *.prefab           text eol=lf
+*.mat              text eol=lf
 
 # Apply Windows/DOS-style CR-LF line-endings on checkout of these files...
 *.bat              text eol=crlf
@@ -114,7 +115,6 @@ WHATSNEW*          text
 *.jpg              binary
 *.keystore         binary
 *.mask             binary
-*.mat              binary
 *.mb               binary
 *.mp3              binary
 *.mp4              binary

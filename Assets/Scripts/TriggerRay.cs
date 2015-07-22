@@ -5,6 +5,7 @@ using UnityEngine.Assertions.Must;
 public class TriggerRay : MonoBehaviour
 {
     private GameObject cameraDolly;
+    private GameObject world;
 
     private RaycastHit hit;
     private bool isHit;
@@ -28,6 +29,7 @@ public class TriggerRay : MonoBehaviour
 	    rayLength = 200f;
 	    lookAtTimer = Config.triggerTimer;
 	    cameraDolly = GameObject.FindWithTag("CardboardDolly");
+	    world = GameObject.Find("World");
 	}
 	
 	// Update is called once per frame
@@ -115,6 +117,5 @@ public class TriggerRay : MonoBehaviour
         currentTravelPoint.GetComponent<Collider>().enabled = false;
 
         currentTravelTime = 0f;
-
     }
 }
