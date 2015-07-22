@@ -3,9 +3,7 @@ using System.Collections;
 
 public class TumbleWeedBehavior : MonoBehaviour {
 
-    private float _walkSpeed;
-    private float _jumpSpeed;
-    private float _jumpHeight;
+    private float _rollSpeed;
 
     private int _range;
     private Vector3 _waypoint;
@@ -13,9 +11,8 @@ public class TumbleWeedBehavior : MonoBehaviour {
 
     private float _timer;
     private bool _idleMode;
-    private bool _jumpMode;
 
-    private float _walkTime;
+    private float _rollTime;
     private float _idleTime;
 
     private float _rayLength;
@@ -25,14 +22,10 @@ public class TumbleWeedBehavior : MonoBehaviour {
     void Start()
     {
         _range = 10;
-        _walkSpeed = 3;
-        _jumpSpeed = 100.0f;
+        _rollSpeed = 3;
         _rayLength = 0.5f;
 
-        _jumpMode = false;
-        _jumpHeight = 2;
-
-        //set idle and walk time
+        //set idle and roll time
         setNewTime();
 
         //overall timer
@@ -47,7 +40,7 @@ public class TumbleWeedBehavior : MonoBehaviour {
     {
 
         checkCollision();
-        walk();
+        roll();
         
 
     }
@@ -67,30 +60,29 @@ public class TumbleWeedBehavior : MonoBehaviour {
     }
 
     /**
-     * Walk and Idle cycle
+     * Roll and Idle cycle
      **/
-    private void walk()
+    private void roll()
     {
-        //check for collision before walk, if collided --> new waypoint
-        //walk as long as the timer suggests
-        if (_timer <= _walkTime)
+        //check for collision before roll, if collided --> new waypoint
+        //roll as long as the timer suggests
+        if (_timer <= _rollTime)
         {
-            transform.position += transform.TransformDirection(Vector3.forward) * _walkSpeed * Time.deltaTime;
-            _jumpMode = true;
-            roll();
+            transform.position += transform.TransformDirection(Vector3.forward) * _rollSpeed * Time.deltaTime;
+            rotate();
             
 
         }
 
-        //tell when creature is in idle Mode
-        if (_timer > _walkTime && _timer <= (_walkTime + _idleTime))
+        //tell when weed is in idle Mode
+        if (_timer > _rollTime && _timer <= (_rollTime + _idleTime))
         {
             _idleMode = true;
 
         }
 
-        //reset timer after one walk and idle cycle is done
-        if (_timer >= (_walkTime + _idleTime))
+        //reset timer after one roll and idle cycle is done
+        if (_timer >= (_rollTime + _idleTime))
         {
             _timer = 0;
             _idleMode = false;
@@ -108,7 +100,7 @@ public class TumbleWeedBehavior : MonoBehaviour {
 
     }
 
-    private void roll()
+    private void rotate()
     {
 
         transform.Find("Ball").Rotate(Vector3.right * Time.deltaTime * 50f);
@@ -118,17 +110,16 @@ public class TumbleWeedBehavior : MonoBehaviour {
     {
         if (Physics.SphereCast(new Ray(transform.position + 0.1f * transform.forward, transform.forward), 1, _rayLength))
         {
-            Debug.Log("I've hit something.");
             getNewWayPoint();
         }
     }
 
     /**
-     * Sets a random walking and idling time
+     * Sets a random rolling and idling time
      **/
     private void setNewTime()
     {
-        _walkTime = Random.Range(2, 7);
+        _rollTime = Random.Range(2, 7);
         _idleTime = Random.Range(2, 5);
     }
 }
