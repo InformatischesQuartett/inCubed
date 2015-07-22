@@ -21,9 +21,9 @@ public class World : MonoBehaviour
         sides[1].transform.parent = this.transform;
         sides[1].name = "Dorf";
 
-        sides[2] = Instantiate(Resources.Load("Prefabs/Eiswelt") as GameObject);
+        sides[2] = Instantiate(Resources.Load("Prefabs/Eis") as GameObject);
         sides[2].transform.parent = this.transform;
-        sides[2].name = "Eiswelt";
+        sides[2].name = "Eis";
 
         sides[3] = Instantiate(Resources.Load("Prefabs/Feuer") as GameObject);
         sides[3].transform.parent = this.transform;
@@ -48,7 +48,7 @@ public class World : MonoBehaviour
         }
 
         //Front Side
-        sides[0].transform.position = new Vector3(0, 0, 100);
+        sides[0].transform.position = new Vector3(-9.8f, -27, 67.7f);
         sides[0].transform.Rotate(new Vector3(-90, 0, 0));
 
         //Back Side
@@ -60,7 +60,7 @@ public class World : MonoBehaviour
         sides[2].transform.Rotate(new Vector3(0, 0, 90));
 
         //Left
-        sides[3].transform.position = new Vector3(-100, 0, 0);
+        sides[3].transform.position = new Vector3(-150, -6, 176);
         sides[3].transform.Rotate(new Vector3(0, 0, -90));
 
         //Top

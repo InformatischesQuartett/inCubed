@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 473428}
   m_Layer: 0
-  m_Name: Eiswelt
+  m_Name: Eis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
