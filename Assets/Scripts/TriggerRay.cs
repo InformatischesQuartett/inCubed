@@ -8,6 +8,15 @@ public class TriggerRay : MonoBehaviour
     private float rayLength;
     private float lookAtTimer;
 
+    private Transform lastTarget;
+
+    private bool traveling;
+    private float currentTravelTime;
+    private float travelDistance;
+    private Vector3 startPos;
+    private Vector3 endPos;
+
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -19,24 +28,44 @@ public class TriggerRay : MonoBehaviour
 	void Update ()
 	{
 
-	    if (Physics.Raycast(transform.position, Vector3.forward, out hit, rayLength))
+	    if (Physics.Raycast(transform.position, Vector3.forward, out hit, rayLength) && !traveling)
 	    {
 	        isHit = true;
 	        lookAtTimer -= Time.deltaTime;
             if (lookAtTimer < 0)
-	            hit.collider.gameObject.SendMessage("EventTrigger");
+	            hit.collider.gameObject.SendMessage("EventTrigger", SendMessageOptions.DontRequireReceiver);
 
-            hit.collider.gameObject.SendMessage("HighlightTrigger");
+            hit.collider.gameObject.SendMessage("HighlightTrigger", SendMessageOptions.DontRequireReceiver);
+	        lastTarget = hit.transform;
 	    }
 	    else
 	    {
 	        isHit = false;
 	        lookAtTimer = Config.triggerTimer;
+            lastTarget = null;
 	    }
 	}
 
     private void OnGUI()
     {
+        //Travel stuff
+        if (traveling)
+        {
+            currentTravelTime += Time.deltaTime;
+            if (currentTravelTime > Config.travelTime)
+            {
+                currentTravelTime = Config.travelTime;
+            }
+
+            float perc = currentTravelTime/Config.travelTime;
+            transform.position = Vector3.Lerp(startPos, endPos, perc);
+            if (perc >= 1)
+            {
+                traveling = false;
+            }
+        }
+
+        // Ray stuff
         if (Debug.isDebugBuild && Config.DebugRayTrigger)
         {
             Debug.DrawLine(transform.position, Vector3.forward * rayLength, Color.red);
@@ -55,5 +84,16 @@ public class TriggerRay : MonoBehaviour
 
             GUILayout.EndArea();
         }
+    }
+
+    void Travel()
+    {
+        traveling = true;
+        startPos = this.transform.position;
+        endPos = lastTarget.transform.position;
+
+        travelDistance = Vector3.Distance(startPos, endPos);
+        currentTravelTime = 0f;
+
     }
 }

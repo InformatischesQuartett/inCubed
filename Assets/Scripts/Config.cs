@@ -7,10 +7,11 @@ public static class Config
 
     public static bool DebugController = false;
     public static bool DebugLight = false;
-    public static bool DebugRayTrigger = false;
+    public static bool DebugRayTrigger = true;
     public static bool ShowFps = true;
 
     public static float triggerTimer = 5f;
+    public static float travelTime = 5f;
 
 
     static Config()
