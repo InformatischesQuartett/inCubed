@@ -1,15 +1,17 @@
 fileFormatVersion: 2
-guid: 41f1ce27e5344e644acee8dedbcb2006
-timeCreated: 1437563102
+guid: 0e1f4443c166316408ef7c5e9d298ff3
+timeCreated: 1437562308
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Ebene
+    100000: Eiszapfen
+    100002: //RootNode
+    400000: Eiszapfen
+    400002: //RootNode
+    2300000: Eiszapfen
+    3300000: Eiszapfen
+    4300000: Eiszapfen
     9500000: //RootNode
   materials:
     importMaterials: 1
