@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEditor.Animations;
 
 public static class Config
 {
