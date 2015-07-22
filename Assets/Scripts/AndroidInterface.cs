@@ -34,7 +34,10 @@ public class AndroidInterface : MonoBehaviour
         _minThreshold = 10;
         _maxThreshold = 10;
 
-        _pluginClass = new AndroidJavaClass("de.infoquart.unitymobile.CamHandler");
+        AndroidJavaClass ajc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject ajo = ajc.GetStatic<AndroidJavaObject>("currentActivity");
+
+        _pluginClass = new AndroidJavaClass("com.Company.inCubed.CamHandler");
         _toastExample = _pluginClass.CallStatic<AndroidJavaObject>("instance");
 
         //_webcamTex = new Texture2D(1920, 1080, TextureFormat.RGBA32, false);
@@ -43,8 +46,11 @@ public class AndroidInterface : MonoBehaviour
 
     private void Update()
     {
-        _alpha = (float)_toastExample.Call<double>("GetAvgBrightness");
-        _curAlpha = _curAlpha < 0 ? _alpha : Mathf.Lerp(_curAlpha, _alpha, Time.deltaTime);
+        if (_toastExample != null)
+        {
+            _alpha = (float) _toastExample.Call<double>("GetAvgBrightness");
+            _curAlpha = _curAlpha < 0 ? _alpha : Mathf.Lerp(_curAlpha, _alpha, Time.deltaTime);
+        }
     }
 
     public void NewData(string dummy)
@@ -71,6 +77,7 @@ public class AndroidInterface : MonoBehaviour
 
     public void OnGUI()
     {
-        GUI.DrawTexture(new Rect(0, Screen.height, Screen.width, -Screen.height), _webcamTex);
+        if (_webcamTex != null)
+            GUI.DrawTexture(new Rect(0, Screen.height, Screen.width, -Screen.height), _webcamTex);
     }
 }
