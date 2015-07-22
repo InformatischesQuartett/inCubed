@@ -9,13 +9,15 @@ public class TriggerRay : MonoBehaviour
     private float lookAtTimer;
 
     private Transform lastTarget;
+    private GameObject currentTravelPoint;
 
     private bool traveling;
     private float currentTravelTime;
-    private float travelDistance;
+
     private Vector3 startPos;
     private Vector3 endPos;
-
+    private Quaternion startRot;
+    private Quaternion endRot;
 
 	// Use this for initialization
 	void Start ()
@@ -28,15 +30,18 @@ public class TriggerRay : MonoBehaviour
 	void Update ()
 	{
 
-	    if (Physics.Raycast(transform.position, Vector3.forward, out hit, rayLength) && !traveling)
+	    if (Physics.Raycast(transform.position, transform.forward, out hit, rayLength) && !traveling)
 	    {
-	        isHit = true;
-	        lookAtTimer -= Time.deltaTime;
-            if (lookAtTimer < 0)
-	            hit.collider.gameObject.SendMessage("EventTrigger", SendMessageOptions.DontRequireReceiver);
+	        if (hit.transform.gameObject.CompareTag("TravelTarget"))
+	        {
+	            isHit = true;
+	            lookAtTimer -= Time.deltaTime;
+	            if (lookAtTimer < 0)
+	                hit.collider.gameObject.SendMessage("EventTrigger", SendMessageOptions.DontRequireReceiver);
 
-            hit.collider.gameObject.SendMessage("HighlightTrigger", SendMessageOptions.DontRequireReceiver);
-	        lastTarget = hit.transform;
+	            hit.collider.gameObject.SendMessage("HighlightTrigger", SendMessageOptions.DontRequireReceiver);
+	            lastTarget = hit.transform;
+	        }
 	    }
 	    else
 	    {
@@ -57,9 +62,11 @@ public class TriggerRay : MonoBehaviour
                 currentTravelTime = Config.travelTime;
             }
 
-            float perc = currentTravelTime/Config.travelTime;
-            transform.position = Vector3.Lerp(startPos, endPos, perc);
-            if (perc >= 1)
+            float t = currentTravelTime/Config.travelTime;
+            t = t*t*t*(t*(6f*t - 15f) + 10f); //Smoothstep
+            transform.position = Vector3.Lerp(startPos, endPos, t);
+            transform.rotation = Quaternion.Lerp(startRot, endRot, t);
+            if (t >= 1)
             {
                 traveling = false;
             }
@@ -68,7 +75,7 @@ public class TriggerRay : MonoBehaviour
         // Ray stuff
         if (Debug.isDebugBuild && Config.DebugRayTrigger)
         {
-            Debug.DrawLine(transform.position, Vector3.forward * rayLength, Color.red);
+            Debug.DrawLine(transform.position, transform.forward * rayLength, Color.red);
 
             GUILayout.BeginArea(new Rect(50.0f, 50.0f, Screen.width - 50.0f, Screen.height - 50.0f));
             GUILayout.BeginHorizontal();
@@ -88,11 +95,22 @@ public class TriggerRay : MonoBehaviour
 
     void Travel()
     {
+        //activate the Collider of the position we are leaving
+        if (currentTravelPoint != null)
+        {
+            currentTravelPoint.GetComponent<Collider>().enabled = true;
+        }
+
         traveling = true;
         startPos = this.transform.position;
         endPos = lastTarget.transform.position;
+        startRot = this.transform.rotation;
+        endRot = lastTarget.transform.rotation;
 
-        travelDistance = Vector3.Distance(startPos, endPos);
+        //Setting the next travelpoint and deactivating its collider
+        currentTravelPoint = lastTarget.gameObject;
+        currentTravelPoint.GetComponent<Collider>().enabled = false;
+
         currentTravelTime = 0f;
 
     }
