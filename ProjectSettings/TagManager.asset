@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TravelTarget
+  - CardboardDolly
   layers:
   - Default
   - TransparentFX

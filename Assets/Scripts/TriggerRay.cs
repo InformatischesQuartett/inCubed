@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Assertions.Must;
 
 public class TriggerRay : MonoBehaviour
 {
+    private GameObject cameraDolly;
+
     private RaycastHit hit;
     private bool isHit;
     private float rayLength;
@@ -24,11 +27,30 @@ public class TriggerRay : MonoBehaviour
 	{
 	    rayLength = 200f;
 	    lookAtTimer = Config.triggerTimer;
+	    cameraDolly = GameObject.FindWithTag("CardboardDolly");
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        //Travel stuff
+        if (traveling)
+        {
+            currentTravelTime += Time.deltaTime;
+            if (currentTravelTime > Config.travelTime)
+            {
+                currentTravelTime = Config.travelTime;
+            }
+
+            float t = currentTravelTime / Config.travelTime;
+            t = t * t * t * (t * (6f * t - 15f) + 10f); //Smoothstep
+            cameraDolly.transform.position = Vector3.Lerp(startPos, endPos, t);
+            cameraDolly.transform.rotation = Quaternion.Lerp(startRot, endRot, t);
+            if (t >= 1)
+            {
+                traveling = false;
+            }
+        }
 
 	    if (Physics.Raycast(transform.position, transform.forward, out hit, rayLength) && !traveling)
 	    {
@@ -53,25 +75,6 @@ public class TriggerRay : MonoBehaviour
 
     private void OnGUI()
     {
-        //Travel stuff
-        if (traveling)
-        {
-            currentTravelTime += Time.deltaTime;
-            if (currentTravelTime > Config.travelTime)
-            {
-                currentTravelTime = Config.travelTime;
-            }
-
-            float t = currentTravelTime/Config.travelTime;
-            t = t*t*t*(t*(6f*t - 15f) + 10f); //Smoothstep
-            transform.position = Vector3.Lerp(startPos, endPos, t);
-            transform.rotation = Quaternion.Lerp(startRot, endRot, t);
-            if (t >= 1)
-            {
-                traveling = false;
-            }
-        }
-
         // Ray stuff
         if (Debug.isDebugBuild && Config.DebugRayTrigger)
         {
@@ -102,9 +105,9 @@ public class TriggerRay : MonoBehaviour
         }
 
         traveling = true;
-        startPos = this.transform.position;
+        startPos = cameraDolly.transform.position;
         endPos = lastTarget.transform.position;
-        startRot = this.transform.rotation;
+        startRot = cameraDolly.transform.rotation;
         endRot = lastTarget.transform.rotation;
 
         //Setting the next travelpoint and deactivating its collider
