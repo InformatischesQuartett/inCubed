@@ -43,7 +43,7 @@ public static class Config
         OpenCVPlugin = PluginClass.CallStatic<AndroidJavaObject>("instance");
 #endif
 
-        CamDataUpdate = 0;
+        CamDataUpdate = -1;
     }
 
     public static void NewData()
