@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+     CARDBOARD LICENSE:
+
+     -------------------------------------------------------------------------
+
      Copyright 2014 Google Inc. All rights reserved.
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,10 +17,23 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
+
+     -------------------------------------------------------------------------
 -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application android:icon="@drawable/app_icon"
-                 android:label="@string/app_name">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.infoquart.unitymobile" android:versionName="1.0" android:versionCode="1" android:installLocation="auto">
+  <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
+  <application android:theme="@android:style/Theme.NoTitleBar" android:icon="@drawable/app_icon" android:label="@string/app_name">
+    <activity android:label="@string/app_name" android:name="de.infoquart.unitymobile.CamHandler" android:screenOrientation="fullSensor" android:launchMode="singleTask" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="android.app.lib_name" android:value="unity" />
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
+    </activity>
+
         <activity android:name="com.google.unity.GoogleUnityActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="landscape"
@@ -29,12 +46,22 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
-        <meta-data android:name="IMMERSIVE_MODE" android:value="true" />
-    </application>
-    <uses-sdk android:minSdkVersion="16" />
-    <uses-feature android:glEsVersion="0x00020000" />
-    <uses-permission android:name="android.permission.NFC"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+
+    <meta-data android:name="IMMERSIVE_MODE" android:value="true" />
+  </application>
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="22" />
+  <uses-feature android:glEsVersion="0x00020000" />
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
+  <uses-feature android:name="android.hardware.camera" android:required="false" />
+  <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+  <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+  <uses-feature android:name="android.hardware.camera.front.autofocus" android:required="false" />
+
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.NFC"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
