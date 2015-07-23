@@ -27,6 +27,8 @@ public static class Config
     public static GameObject World { get; set; }
 
     public static bool InitializedOCV { get; private set; }
+    public static bool PausedOCV { get; private set; }
+
     public static AndroidJavaObject OpenCVPlugin;
     public static AndroidJavaClass PluginClass;
 
@@ -49,14 +51,34 @@ public static class Config
 
         CamDataUpdate = -1;
         InitializedOCV = false;
+        PausedOCV = false;
     }
 
     public static void InitOpenCV()
     {
-        InitializedOCV = true;
-
         if (OpenCVPlugin != null)
+        {
+            InitializedOCV = true;
             OpenCVPlugin.Call("InitOpenCV");
+        }
+    }
+
+    public static void PauseOpenCV()
+    {
+        if (OpenCVPlugin != null)
+        {
+            PausedOCV = true;
+            OpenCVPlugin.Call("PauseOpenCV");
+        }    
+    }
+
+    public static void ResumeOpenCV()
+    {
+        if (OpenCVPlugin != null)
+        {
+            PausedOCV = false;
+            OpenCVPlugin.Call("ResumeOpenCV");
+        }
     }
 
     public static void NewData()
