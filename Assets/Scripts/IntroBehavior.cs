@@ -213,7 +213,7 @@ public class IntroBehavior : MonoBehaviour {
 
                     if (StoryPlane.transform.localScale.x >= 0.34f)
                     {
-                        if (_storyPlaneId == 3)
+                        if (_storyPlaneId == 6)
                             _storyPlaneId = 1;
 
                         if (_storyPlaneId < 5)
