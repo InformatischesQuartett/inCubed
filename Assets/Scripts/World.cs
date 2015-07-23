@@ -172,6 +172,7 @@ public class World : MonoBehaviour
                     {
                         GUILayout.Label(state.Key + ": " + state.Value);
                     }
+                    GUILayout.Label("Ambient Intensity: " + RenderSettings.ambientIntensity);
                 }
                 GUILayout.EndVertical();
             }
