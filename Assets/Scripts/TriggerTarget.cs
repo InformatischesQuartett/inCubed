@@ -92,7 +92,10 @@ public class TriggerTarget : MonoBehaviour
 
     private void ActivateTrigger()
     {
-        this.GetComponent<Collider>().enabled = true;
+        if (ready)
+        {
+            this.GetComponent<Collider>().enabled = true;
+        }
     }
 
     private void RegisterTrigger(GameObject sender)
