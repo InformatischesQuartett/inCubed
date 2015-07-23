@@ -34,6 +34,7 @@ public class ShowUI : MonoBehaviour
 
     void Display(int num)
     {
+        num--;
         lasttarget = num;
         transform.GetChild(num).gameObject.SetActive(true);
         timer = 3;

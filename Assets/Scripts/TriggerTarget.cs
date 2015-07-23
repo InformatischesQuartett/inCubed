@@ -18,6 +18,8 @@ public class TriggerTarget : MonoBehaviour
     private GameObject parent;
     private GameObject world;
 
+    private float preWarmTimer = 2;
+
     private void EventTrigger()
     {
         DeactivateTrigger();
@@ -69,18 +71,26 @@ public class TriggerTarget : MonoBehaviour
     {
         if (!triggered && !ready)
         {
-            ready = true;
-            foreach (string state in dependsOnGamestate)
-            {
-                if (!Config.GameStates[state])
+                ready = true;
+                foreach (string state in dependsOnGamestate)
                 {
-                    ready = false;
+                    if (!Config.GameStates[state])
+                    {
+                        ready = false;
+                    }
                 }
-            }
 
             if (ready)
             {
-                ActivateTrigger();
+                if (preWarmTimer < 0)
+                {
+                    ActivateTrigger();
+                }
+                else
+                {
+                    preWarmTimer -= Time.deltaTime;
+                    ready = false;
+                }
             }
         }
     }

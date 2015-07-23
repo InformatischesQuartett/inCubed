@@ -16,7 +16,9 @@ public class EventController : MonoBehaviour
 	    if (Input.GetKeyDown(KeyCode.L))
 	    {
 	        FirstCube();
-
+	        LetThereBeLight();
+	        Config.GameStates["crystalActivated"] = true;
+            Config.GameStates["shovelTaken"] = true;
 	    }
 	}
 
@@ -31,12 +33,39 @@ public class EventController : MonoBehaviour
 
     void FirstCube()
     {
-        uicanvas.SendMessage("Display", 2);
+        uicanvas.SendMessage("Display", 3);
         GameObject.Find("frau_2").GetComponent<AudioSource>().Play();
     }
 
     void GebirgeGrav()
     {
-    GameObject.Find("kasten_gravinator_gebirge").GetComponent<AudioSource>().Play();
+        GameObject.Find("kasten_gravinator_gebirge").GetComponent<AudioSource>().Play();
+    }
+
+    void WuesteGrav()
+    {
+        uicanvas.SendMessage("Display", 5);
+    }
+
+    void SchaufelShow()
+    {
+        uicanvas.SendMessage("Display", 1);
+    }
+
+    void StartBurn()
+    {
+        GameObject.Find("ParticleVolc").GetComponent<ParticleSystem>().Play();
+        GameObject.Find("ParticleHouse").GetComponent<ParticleSystem>().Play();
+        //GameObject.Find("ParticleHouse").SendMessage("ActivateTrigger");
+    }
+
+    void UITorch()
+    {
+        uicanvas.SendMessage("Display", 2);
+    }
+
+    void StopBurn()
+    {
+        GameObject.Find("ParticleHouse").GetComponent<ParticleSystem>().Stop();
     }
 }
