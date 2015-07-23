@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Prototypes/Intro/Intro.unity
   - enabled: 1
     path: Assets/Game.unity
+  - enabled: 1
+    path: Assets/Prototypes/Outro/Outro.unity

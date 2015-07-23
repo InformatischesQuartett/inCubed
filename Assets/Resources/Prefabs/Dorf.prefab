@@ -1781,10 +1781,10 @@ GameObject:
   - 114: {fileID: 11432790}
   - 114: {fileID: 11451112}
   - 135: {fileID: 13566128}
-  - 135: {fileID: 13587004}
+  - 82: {fileID: 8293894}
   m_Layer: 0
   m_Name: frau_2
-  m_TagString: Untagged
+  m_TagString: ItemTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5928,6 +5928,75 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.1166687, y: 8.53774643, z: 8.76129246}
   m_Center: {x: .253281832, y: 4.08455849, z: -.666683793}
+--- !u!82 &8293894
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196402}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2dd91b8847a159740b4c806a849b0018, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9520528
 Animator:
   serializedVersion: 3
@@ -6049,6 +6118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animate: 0
+  anim: 
 --- !u!114 &11435908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6092,8 +6162,8 @@ MonoBehaviour:
   destroy: 0
   instantiate: 0
   prefabs: []
-  message: 0
-  eventMessage: 
+  message: 1
+  eventMessage: FirstCube
   ready: 0
   triggered: 0
   registerTo: 
@@ -6110,18 +6180,6 @@ SphereCollider:
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13566128
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 196402}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.67000008
-  m_Center: {x: 0, y: 3.06999993, z: 0}
---- !u!135 &13587004
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

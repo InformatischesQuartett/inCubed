@@ -124,14 +124,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400012, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -191,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4962e6a73ccc8974489c0cb922c5cd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uicanvas: {fileID: 0}
 --- !u!4 &1116660883 stripped
 Transform:
   m_PrefabParentObject: {fileID: 450040, guid: 0bed10ef940aa0246b62afb9a2813e75, type: 2}
