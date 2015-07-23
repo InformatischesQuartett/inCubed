@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class World : MonoBehaviour
 {
@@ -76,4 +77,27 @@ public class World : MonoBehaviour
 //        this.transform.Rotate(inputGamepad.JoystickAxes["LS Y"], inputGamepad.JoystickAxes["LS X"], 0);
     
     }
+
+    private void OnGUI()
+    {
+        if (Debug.isDebugBuild && Config.DebugGamestate)
+        {
+            GUILayout.BeginArea(new Rect(50.0f, 50.0f, Screen.width - 50.0f, Screen.height - 50.0f));
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.BeginVertical(GUILayout.Width(200.0f));
+                {
+                    foreach (KeyValuePair<string, bool> state in Config.GameStates)
+                    {
+                        GUILayout.Label(state.Key + ": " + state.Value);
+                    }
+                }
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.EndArea();
+        }
+    }
+
 }
