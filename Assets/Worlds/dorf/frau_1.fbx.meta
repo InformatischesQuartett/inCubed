@@ -51,7 +51,9 @@ ModelImporter:
     400042: Root
     4300000: p1_kopf_1
     4300002: p1_torso
-    7400000: C4D Animation Take
+    7400000: Idle
+    7400002: Wave
+    7400004: Panic
     9500000: //RootNode
     11100000: //RootNode
     13700000: p1_kopf_1
@@ -75,7 +77,217 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 2
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: C4D Animation Take
+      firstFrame: 5
+      lastFrame: 30
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p1_kopf_1
+        weight: 1
+      - path: p1_torso
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Joint
+        weight: 1
+      - path: Root/Joint/Joint_1
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Joint_5
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2/Joint_5_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6/Joint_7
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2/Joint_7_2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Wave
+      takeName: C4D Animation Take
+      firstFrame: 30
+      lastFrame: 55
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p1_kopf_1
+        weight: 1
+      - path: p1_torso
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Joint
+        weight: 1
+      - path: Root/Joint/Joint_1
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Joint_5
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2/Joint_5_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6/Joint_7
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2/Joint_7_2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Panic
+      takeName: C4D Animation Take
+      firstFrame: 60
+      lastFrame: 75
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p1_kopf_1
+        weight: 1
+      - path: p1_torso
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Joint
+        weight: 1
+      - path: Root/Joint/Joint_1
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Joint_5
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2/Joint_5_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6/Joint_7
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2/Joint_7_2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
