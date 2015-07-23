@@ -26,6 +26,9 @@ public class IntroBehavior : MonoBehaviour {
     public GameObject CalibRect;
     public Text TimeText;
 
+    public Camera leftCam;
+    public Camera rightCam;
+
     private IntroState _introState;
 
     private float _rotSpeed;
@@ -37,9 +40,12 @@ public class IntroBehavior : MonoBehaviour {
     private Texture2D _webcamTex;
 
     private Renderer _planeRenderer;
-    private Grayscale _grayScript;
-    private Twirl _twirlScript;
-    private ColorCorrectionCurves _cccScript;
+    private Grayscale _grayScriptLeft;
+    private Twirl _twirlScriptLeft;
+    private ColorCorrectionCurves _cccScriptLeft;
+    private Grayscale _grayScriptRight;
+    private Twirl _twirlScriptRight;
+    private ColorCorrectionCurves _cccScriptRight;
 
     private const int MaxRotSpeed = 200;
     private const float SpeedIncrease = 1.01f;
@@ -76,14 +82,18 @@ public class IntroBehavior : MonoBehaviour {
         var nextTex = Resources.Load<Texture2D>("Textures/Story/Story1");
         StoryPlane.GetComponent<Renderer>().material.mainTexture = nextTex;
 
-        var cam = Camera.main;
-        _cccScript = cam.GetComponent<ColorCorrectionCurves>();
+        _cccScriptLeft = leftCam.GetComponent<ColorCorrectionCurves>();
+        _cccScriptRight = rightCam.GetComponent<ColorCorrectionCurves>();
 
-        _grayScript = cam.GetComponent<Grayscale>();
-        _grayScript.enabled = false;
+        _grayScriptLeft = leftCam.GetComponent<Grayscale>();
+        _grayScriptRight = rightCam.GetComponent<Grayscale>();
+        _grayScriptLeft.enabled = false;
+        _grayScriptRight.enabled = false;
 
-        _twirlScript = cam.GetComponent<Twirl>();
-        _twirlScript.enabled = false;
+        _twirlScriptLeft = leftCam.GetComponent<Twirl>();
+        _twirlScriptRight = rightCam.GetComponent<Twirl>();
+        _twirlScriptLeft.enabled = false;
+        _twirlScriptRight.enabled = false;
     }
 
     private void Update()
@@ -131,7 +141,9 @@ public class IntroBehavior : MonoBehaviour {
                     {
                         _introState = IntroState.Transport;
                         _starTime = Time.realtimeSinceStartup;
-                        _twirlScript.enabled = true;
+
+                        _twirlScriptLeft.enabled = true;
+                        _twirlScriptRight.enabled = true;
 
                         CalibRect.SetActive(false);
                         Planes.SetActive(true);
@@ -155,19 +167,27 @@ public class IntroBehavior : MonoBehaviour {
 
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
-                _twirlScript.angle += AngleIncrease*Time.deltaTime;
+                _twirlScriptLeft.angle += AngleIncrease*Time.deltaTime;
+                _twirlScriptRight.angle += AngleIncrease * Time.deltaTime;
 
-                if (_cccScript.saturation >= 0)
-                    _cccScript.saturation -= SaturationDecrease*Time.deltaTime;
+                if (_cccScriptLeft.saturation >= 0)
+                {
+                    _cccScriptLeft.saturation -= SaturationDecrease*Time.deltaTime;
+                    _cccScriptRight.saturation -= SaturationDecrease*Time.deltaTime;
+                }
                 else
                 {
-                    if (!_grayScript.enabled)
-                        _grayScript.enabled = true;
+                    if (!_grayScriptLeft.enabled)
+                    {
+                        _grayScriptLeft.enabled = true;
+                        _grayScriptRight.enabled = true;
+                    }
 
-                    _grayScript.rampOffset += RampIncrease*Time.deltaTime;
+                    _grayScriptLeft.rampOffset += RampIncrease*Time.deltaTime;
+                    _grayScriptRight.rampOffset += RampIncrease * Time.deltaTime;
                 }
 
-                if (_grayScript.rampOffset > 1.0f)
+                if (_grayScriptLeft.rampOffset > 1.0f)
                 {
                     _planeRenderer.material.mainTexture = WormholeTex;
                     _introState = IntroState.Wormhole;
@@ -179,25 +199,43 @@ public class IntroBehavior : MonoBehaviour {
             case IntroState.Wormhole:
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
-                if (_grayScript.rampOffset >= 0)
-                    _grayScript.rampOffset -= RampIncrease*Time.deltaTime;
+                if (_grayScriptLeft.rampOffset >= 0)
+                {
+                    _grayScriptLeft.rampOffset -= RampIncrease * Time.deltaTime;
+                    _grayScriptRight.rampOffset -= RampIncrease * Time.deltaTime;
+                }
                 else
                 {
-                    if (_grayScript.enabled)
-                        _grayScript.enabled = false;
+                    if (_grayScriptLeft.enabled)
+                    {
+                        _grayScriptLeft.enabled = false;
+                        _grayScriptRight.enabled = false;
+                    }
 
-                    if (_cccScript.saturation < 0.4f)
-                        _cccScript.saturation += SaturationDecrease*Time.deltaTime;
+                    if (_cccScriptLeft.saturation < 0.4f)
+                    {
+                        _cccScriptLeft.saturation += SaturationDecrease*Time.deltaTime;
+                        _cccScriptRight.saturation += SaturationDecrease*Time.deltaTime;
+                    }
                     else
-                        _cccScript.saturation = 0.45f;
+                    {
+                        _cccScriptLeft.saturation = 0.45f;
+                        _cccScriptRight.saturation = 0.45f;
+                    }
+
+                    if (_twirlScriptLeft.angle - AngleIncrease*Time.deltaTime > 0)
+                    {
+                        _twirlScriptLeft.angle -= AngleIncrease*Time.deltaTime;
+                        _twirlScriptRight.angle -= AngleIncrease * Time.deltaTime;
+                    }
+                    else
+                    {
+                        _twirlScriptLeft.enabled = false;
+                        _twirlScriptRight.enabled = false;
+                    }
                 }
 
-                if (_twirlScript.angle - AngleIncrease*Time.deltaTime > 0)
-                    _twirlScript.angle -= AngleIncrease*Time.deltaTime;
-                else
-                    _twirlScript.enabled = false;
-
-                if (_cccScript.saturation > 0.4f && !_twirlScript.enabled)
+                if (_cccScriptLeft.saturation > 0.4f && !_twirlScriptLeft.enabled)
                     _introState = IntroState.Story;
 
                 break;
