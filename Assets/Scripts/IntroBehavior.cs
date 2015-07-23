@@ -16,12 +16,15 @@ public class IntroBehavior : MonoBehaviour {
     }
 
     // TODO: not public, use find and stuff
+    public GameObject Cardboard;
     public GameObject Plane;
+    public GameObject StoryPlane;
+    public GameObject Planes;
     public Texture WormholeTex;
+    public RawImage WebcamTex;
     public GameObject LoadingRect;
     public GameObject CalibRect;
     public Text TimeText;
-    public GameObject StoryPlane;
 
     private IntroState _introState;
 
@@ -60,17 +63,12 @@ public class IntroBehavior : MonoBehaviour {
         _lastDataCheck = -1;
         _storyPlaneId = 1;
 
-        //_webcamTex = new Texture2D(1920, 1080, TextureFormat.RGBA32, false);
-        _webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
+        _webcamTex = new Texture2D(1920, 1080, TextureFormat.RGBA32, false);
+        //_webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
+
+        Planes.SetActive(false);
 
         _planeRenderer = Plane.GetComponent<Renderer>();
-        _cccScript = GetComponent<ColorCorrectionCurves>();
-
-        _grayScript = GetComponent<Grayscale>();
-        _grayScript.enabled = false;
-
-        _twirlScript = GetComponent<Twirl>();
-        _twirlScript.enabled = false;
 
         StoryPlane.transform.localScale = new Vector3(0.0001f, 0, 0.0001f);
         _tempTargetPos = new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), _planeStartPos.z);
@@ -79,12 +77,31 @@ public class IntroBehavior : MonoBehaviour {
         StoryPlane.GetComponent<Renderer>().material.mainTexture = nextTex;
     }
 
+    private void InitCardboard()
+    {
+        Cardboard.SetActive(true);
+
+        var cam = Camera.main;
+        _cccScript = cam.GetComponent<ColorCorrectionCurves>();
+
+        _grayScript = cam.GetComponent<Grayscale>();
+        _grayScript.enabled = false;
+
+        _twirlScript = cam.GetComponent<Twirl>();
+        _twirlScript.enabled = false;
+    }
+
     private void Update()
     {
         switch (_introState)
         {
             case IntroState.Loading:
-                if (Config.CamDataUpdate > 0 && Config.CamDataUpdate > _lastDataCheck)
+                if (Time.realtimeSinceStartup - _starTime > 1)
+                    if (!Config.InitializedOCV)
+                        Config.InitOpenCV();
+
+                if (Config.InitializedOCV && Config.CamDataUpdate > 0 &&
+                    Config.CamDataUpdate > _lastDataCheck)
                 {
                     _introState = IntroState.Calibration;
 
@@ -104,6 +121,7 @@ public class IntroBehavior : MonoBehaviour {
                         _webcamTex.LoadRawTextureData(Config.CamData);
                         _webcamTex.Apply();
 
+                        WebcamTex.texture = _webcamTex;
                         _planeRenderer.material.mainTexture = _webcamTex;
                     }
                 }
@@ -162,6 +180,9 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Wormhole:
+                if (!Planes.activeSelf)
+                    Planes.SetActive(true);
+
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
                 if (_grayScript.rampOffset >= 0)

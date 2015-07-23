@@ -25,7 +25,8 @@ public static class Config
     public static float travelTime = 5f;
 
     public static GameObject World { get; set; }
-    
+
+    public static bool InitializedOCV { get; private set; }
     public static AndroidJavaObject OpenCVPlugin;
     public static AndroidJavaClass PluginClass;
 
@@ -47,6 +48,15 @@ public static class Config
 #endif
 
         CamDataUpdate = -1;
+        InitializedOCV = false;
+    }
+
+    public static void InitOpenCV()
+    {
+        InitializedOCV = true;
+
+        if (OpenCVPlugin != null)
+            OpenCVPlugin.Call("InitOpenCV");
     }
 
     public static void NewData()
