@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e8667297273372842958a48229074188
-timeCreated: 1437662888
+guid: 243a9d77f4a828c428dc004d16da3bfa
+timeCreated: 1437664945
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -51,9 +51,9 @@ ModelImporter:
     400042: Root
     4300000: p1_kopf_1
     4300002: p1_torso
-    7400000: Idle
-    7400002: Wave
-    7400004: Panic
+    7400000: Panic
+    7400002: Idle
+    7400004: Wave
     9500000: //RootNode
     11100000: //RootNode
     13700000: p1_kopf_1
@@ -75,7 +75,7 @@ ModelImporter:
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
-    animationWrapMode: 2
+    animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
