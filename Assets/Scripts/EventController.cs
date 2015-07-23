@@ -20,5 +20,7 @@ public class EventController : MonoBehaviour {
         RenderSettings.ambientIntensity = 1;
         RenderSettings.reflectionIntensity = 1;
         RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
+
+        GameObject.Find("frau_2").SendMessage("dubistneganzliebedrumwinkmalbitte");
     }
 }
