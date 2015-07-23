@@ -4,33 +4,65 @@ public class TriggerTarget : MonoBehaviour
 {
     public string[] changesGamestate;
     public string[] dependsOnGamestate;
-    public GameObject winParticle;
+    public bool destroy;
+    public bool instantiate;
+    public spawns[] prefabs;
+    public bool message;
+    public string eventMessage;
 
-    private bool ready;
-    private bool triggered;
+    public bool ready;
+    public bool triggered;
+
+    public string registerTo;
 
     private GameObject parent;
+    private GameObject world;
 
     private void EventTrigger()
     {
-        this.GetComponent<Collider>().enabled = false;
+        DeactivateTrigger();
 
         for (int i = 0; i < changesGamestate.Length; i++)
         {
             Config.GameStates[changesGamestate[i]] = true;
-            Instantiate(winParticle);
+        }
+        if (instantiate)
+        {
+            foreach (var prefab in prefabs)
+            {
+                if (prefab.atNativePos)
+                {
+                    Instantiate(prefab.prefab);
+                }
+                else
+                {
+                    Instantiate(prefab.prefab, this.transform.position, this.transform.rotation);
+                }
+            }
+        }
+        if (destroy)
+        {
             Destroy(this.gameObject);
+        }
+        if (message)
+        {
+            world.SendMessage(eventMessage);
         }
     }
 
     private void HighlightTrigger()
     {
-        this.BroadcastMessage("ShowHighlight");
+        this.BroadcastMessage("ShowHighlight", SendMessageOptions.DontRequireReceiver);
     }
 
     private void Start()
     {
-        this.GetComponent<Collider>().enabled = false;
+        world = GameObject.Find("World");
+        DeactivateTrigger();
+        if (registerTo != string.Empty)
+        {
+            GameObject.Find(registerTo).SendMessage("TriggerReg", this.gameObject);
+        }
     }
 
     private void Update()
@@ -48,7 +80,7 @@ public class TriggerTarget : MonoBehaviour
 
             if (ready)
             {
-                this.GetComponent<Collider>().enabled = true;
+                ActivateTrigger();
             }
         }
     }

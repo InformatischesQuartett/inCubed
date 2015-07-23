@@ -21,14 +21,20 @@ public class RegisterTriggers : MonoBehaviour
     {
         foreach (var trigger in triggers)
         {
-            trigger.SendMessage("ActivateTrigger");
+            if (trigger != null)
+            {
+                trigger.SendMessage("ActivateTrigger");
+            }
         }
     }
     void DeactivateTriggers()
     {
         foreach (var trigger in triggers)
         {
-            trigger.SendMessage("DeactivateTrigger");
+            if (trigger != null)
+            {
+                trigger.SendMessage("DeactivateTrigger");
+            }
         }
     }
 }

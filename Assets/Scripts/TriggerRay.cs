@@ -56,7 +56,7 @@ public class TriggerRay : MonoBehaviour
 
 	    if (Physics.Raycast(transform.position, transform.forward, out hit, rayLength) && !traveling)
 	    {
-	        if (hit.transform.gameObject.CompareTag("TravelTarget"))
+	        if (hit.transform.gameObject.CompareTag("TravelTarget") || hit.transform.gameObject.CompareTag("ItemTrigger"))
 	        {
 	            isHit = true;
 	            lookAtTimer -= Time.deltaTime;

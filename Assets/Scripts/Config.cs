@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum SHAPETYPE
@@ -18,8 +19,9 @@ public static class Config
 
     public static bool DebugController = false;
     public static bool DebugLight = false;
-    public static bool DebugRayTrigger = true;
-    public static bool ShowFps = true;
+    public static bool DebugRayTrigger = false;
+    public static bool DebugGamestate = true;
+    public static bool ShowFps = false;
 
     public static float triggerTimer = 1.3f;
     public static float travelTime = 5f;
@@ -42,7 +44,20 @@ public static class Config
     {
         GameStates = new Dictionary<string, bool>();
         GameStates.Add("gameStarted", true);
-        GameStates.Add("Bla", false);
+        GameStates.Add("crystalGravity", false);
+        GameStates.Add("crystalTaken", false);
+        GameStates.Add("crystalActivated", false); //mainstate für traveltrigger
+        GameStates.Add("firstCubeTaken", false);
+
+        GameStates.Add("vulcanoActivated", false);
+        GameStates.Add("torchTaken", false);
+        GameStates.Add("iceMelted", false);
+        GameStates.Add("secondCubeTaken", false);
+
+        GameStates.Add("shovelTaken", false);
+        GameStates.Add("dugUp", false);
+        GameStates.Add("thirdCubeTaken", false);
+
 
 #if !UNITY_EDITOR
         PluginClass = new AndroidJavaClass("com.Company.inCubed.CamHandler");
@@ -100,4 +115,11 @@ public static class Config
             LastShapePos = new Vector2((float)shapePos[0], (float)shapePos[1]);
         }
     }
+}
+
+[Serializable]
+public struct spawns
+{
+    public GameObject prefab;
+    public bool atNativePos;
 }
