@@ -299,7 +299,7 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Start:
-                // Application.LoadLevel();
+                Application.LoadLevel("Game");
                 break;
         }
     }
