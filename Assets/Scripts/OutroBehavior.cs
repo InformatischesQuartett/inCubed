@@ -16,6 +16,7 @@ public class OutroBehavior : MonoBehaviour {
 
     // TODO: not public, use find and stuff
     public World WorldScript;
+    public GameObject WorldObj;
 
     public GameObject Plane;
     public GameObject StoryPlane;
@@ -129,6 +130,7 @@ public class OutroBehavior : MonoBehaviour {
                 if (_grayScriptLeft.rampOffset > 1.0f)
                 {
                     Planes.SetActive(true);
+                    WorldObj.SetActive(false);
                     _planeRenderer.material.mainTexture = WormholeTex;
                     _outroState = OutroState.Wormhole;
                 }
