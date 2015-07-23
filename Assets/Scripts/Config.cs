@@ -30,6 +30,7 @@ public static class Config
 
     public static bool InitializedOCV { get; private set; }
     public static bool PausedOCV { get; private set; }
+    public static bool PausedCam { get; private set; }
 
     public static AndroidJavaObject OpenCVPlugin;
     public static AndroidJavaClass PluginClass;
@@ -67,6 +68,7 @@ public static class Config
         CamDataUpdate = -1;
         InitializedOCV = false;
         PausedOCV = false;
+        PausedCam = false;
     }
 
     public static void InitOpenCV()
@@ -80,28 +82,37 @@ public static class Config
 
     public static void PauseOpenCV()
     {
-        /*
         if (OpenCVPlugin != null)
         {
             PausedOCV = true;
-            OpenCVPlugin.Call("PauseOpenCV");
+            //OpenCVPlugin.Call("PauseOpenCV");
         }
-        */
     }
 
     public static void ResumeOpenCV()
     {
-        /*
         if (OpenCVPlugin != null)
         {
             PausedOCV = false;
-            OpenCVPlugin.Call("ResumeOpenCV");
+            //OpenCVPlugin.Call("ResumeOpenCV");
         }
-        */
+    }
+
+    public static void PauseCam()
+    {
+        PausedCam = true;
+    }
+
+    public static void ResumeCam()
+    {
+        PausedCam = false;
     }
 
     public static void NewData()
     {
+        if (PausedOCV) return;
+        if (PausedCam) return;
+
         if (OpenCVPlugin != null)
         {
             CamData = OpenCVPlugin.Call<byte[]>("GetBuffer");
@@ -111,6 +122,8 @@ public static class Config
 
     public static void ShapeDetected(string shape)
     {
+        if (PausedOCV) return;
+
         LastShape = (SHAPETYPE)int.Parse(shape);
 
         if (OpenCVPlugin != null)

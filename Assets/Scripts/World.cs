@@ -14,6 +14,8 @@ public class World : MonoBehaviour
     public bool IsWorldOpen;
     public bool IsWorldOpening;
 
+    private SHAPETYPE _lastShape;
+
 	// Use this for initialization
     private void Start()
     {
@@ -86,11 +88,16 @@ public class World : MonoBehaviour
 
         IsWorldOpen = false;
         IsWorldOpening = false;
+
+        _lastShape = SHAPETYPE.Star;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        //if (Config.LastShape != _lastShape)
+
+
 //      this.transform.Rotate(inputGamepad.JoystickAxes["LS Y"], inputGamepad.JoystickAxes["LS X"], 0);
 
         switch (_rotationStep)

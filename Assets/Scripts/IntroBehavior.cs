@@ -147,7 +147,9 @@ public class IntroBehavior : MonoBehaviour {
 
                         CalibRect.SetActive(false);
                         Planes.SetActive(true);
+
                         Config.PauseOpenCV();
+                        Config.PauseCam();
                     }
                 }
                 else
@@ -198,7 +200,6 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Wormhole:
-                Application.LoadLevel("Game");
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
                 if (_grayScriptLeft.rampOffset >= 0)
@@ -297,7 +298,9 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Start:
-                Application.LoadLevel("Outro");
+                Application.LoadLevel("Game");
+                Config.ResumeOpenCV();
+
                 break;
         }
     }

@@ -255,7 +255,9 @@ public class OutroBehavior : MonoBehaviour {
                     _outroState = OutroState.RealMode;
                     CalibRect.SetActive(true);
                     Planes.SetActive(false);
+
                     Config.ResumeOpenCV();
+                    Config.ResumeCam();
                 }
 
                 break;
