@@ -75,11 +75,6 @@ public class IntroBehavior : MonoBehaviour {
 
         var nextTex = Resources.Load<Texture2D>("Textures/Story/Story1");
         StoryPlane.GetComponent<Renderer>().material.mainTexture = nextTex;
-    }
-
-    private void InitCardboard()
-    {
-        Cardboard.SetActive(true);
 
         var cam = Camera.main;
         _cccScript = cam.GetComponent<ColorCorrectionCurves>();
@@ -137,7 +132,9 @@ public class IntroBehavior : MonoBehaviour {
                         _introState = IntroState.Transport;
                         _starTime = Time.realtimeSinceStartup;
                         _twirlScript.enabled = true;
+
                         CalibRect.SetActive(false);
+                        Planes.SetActive(true);
                     }
                 }
                 else
@@ -180,9 +177,6 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Wormhole:
-                if (!Planes.activeSelf)
-                    Planes.SetActive(true);
-
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
                 if (_grayScript.rampOffset >= 0)
@@ -237,7 +231,7 @@ public class IntroBehavior : MonoBehaviour {
                         if (_storyPlaneId == 6)
                             _storyPlaneId = 1;
 
-                        if (_storyPlaneId < 5)
+                        if (_storyPlaneId < 6)
                         {
                             _storyPlaneId++;
 

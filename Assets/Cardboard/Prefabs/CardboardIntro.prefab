@@ -604,7 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 641b781cad112c75d0008dfa8d76c639, type: 3}
   radius: {x: 1, y: 1}
-  angle: 1
+  angle: 0
   center: {x: .5, y: .5}
 --- !u!114 &11483252
 MonoBehaviour:
