@@ -4,6 +4,7 @@ public class animationControls : MonoBehaviour
 {
 
     public bool animate;
+    public string anim;
 
     // Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class animationControls : MonoBehaviour
 	{
 	    if (animate)
 	    {
-	        this.gameObject.GetComponent<Animation>().Play("Wave");
+	        this.gameObject.GetComponent<Animation>().Play(anim);
 	        animate = false;
 	    }
 	}
@@ -23,5 +24,12 @@ public class animationControls : MonoBehaviour
     void dubistneganzliebedrumwinkmalbitte()
     {
         animate = true;
+        anim = "Wave";
+    }
+
+    void panic()
+    {
+        animate = true;
+        anim = "Panic";
     }
 }

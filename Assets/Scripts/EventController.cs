@@ -47,6 +47,11 @@ public class EventController : MonoBehaviour
         uicanvas.SendMessage("Display", 5);
     }
 
+    void FeuerGrav()
+    {
+        uicanvas.SendMessage("Display", 4);
+    }
+
     void SchaufelShow()
     {
         uicanvas.SendMessage("Display", 1);
@@ -56,7 +61,7 @@ public class EventController : MonoBehaviour
     {
         GameObject.Find("ParticleVolc").GetComponent<ParticleSystem>().Play();
         GameObject.Find("ParticleHouse").GetComponent<ParticleSystem>().Play();
-        //GameObject.Find("ParticleHouse").SendMessage("ActivateTrigger");
+        GameObject.Find("mann1").SendMessage("panic");
     }
 
     void UITorch()
@@ -66,6 +71,7 @@ public class EventController : MonoBehaviour
 
     void StopBurn()
     {
-        GameObject.Find("ParticleHouse").GetComponent<ParticleSystem>().Stop();
+        Destroy(GameObject.Find("ParticleHouse"));
+        GameObject.Find("mann1").SendMessage("dubistneganzliebedrumwinkmalbitte");
     }
 }
