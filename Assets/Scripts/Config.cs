@@ -80,20 +80,24 @@ public static class Config
 
     public static void PauseOpenCV()
     {
+        /*
         if (OpenCVPlugin != null)
         {
             PausedOCV = true;
             OpenCVPlugin.Call("PauseOpenCV");
-        }    
+        }
+        */
     }
 
     public static void ResumeOpenCV()
     {
+        /*
         if (OpenCVPlugin != null)
         {
             PausedOCV = false;
             OpenCVPlugin.Call("ResumeOpenCV");
         }
+        */
     }
 
     public static void NewData()

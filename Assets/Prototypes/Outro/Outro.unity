@@ -324,6 +324,10 @@ Prefab:
       propertyPath: trackPosition
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: da0b2cf3e6e3061439ce8cb8fc04be24, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da0b2cf3e6e3061439ce8cb8fc04be24, type: 2}
   m_IsPrefabParent: 0
@@ -352,7 +356,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 372191431}
   m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
-  m_LocalPosition: {x: .0399999991, y: -.0299999993, z: -6.5}
+  m_LocalPosition: {x: .0399999991, y: -.0299999993, z: -8}
   m_LocalScale: {x: 1, y: 1, z: .560000002}
   m_Children: []
   m_Father: {fileID: 155007431}
@@ -415,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &410109535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,12 +481,12 @@ Transform:
   m_PrefabParentObject: {fileID: 400006, guid: da0b2cf3e6e3061439ce8cb8fc04be24, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 442403264}
-  m_LocalRotation: {x: -.149694771, y: -.59515202, z: .114033595, w: -.781269491}
-  m_LocalPosition: {x: -2.56011438, y: 1.05638409, z: 449.294769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2120979959}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!114 &442403266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,7 +758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1171122698
 Transform:
   m_ObjectHideFlags: 0
@@ -879,15 +883,15 @@ Camera:
   m_PrefabParentObject: {fileID: 2000002, guid: da0b2cf3e6e3061439ce8cb8fc04be24,
     type: 2}
   m_PrefabInternal: {fileID: 303361188}
---- !u!1 &1502587945
+--- !u!1 &1665545390
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1502587946}
-  - 114: {fileID: 1502587947}
+  - 4: {fileID: 1665545391}
+  - 114: {fileID: 1665545392}
   m_Layer: 0
   m_Name: Behavior (1)
   m_TagString: Untagged
@@ -895,38 +899,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1502587946
+--- !u!4 &1665545391
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1502587945}
+  m_GameObject: {fileID: 1665545390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2120979959}
-  m_RootOrder: 0
---- !u!114 &1502587947
+  m_RootOrder: 1
+--- !u!114 &1665545392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1502587945}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1665545390}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded80b13f0e49af43bf8144889c5c09f, type: 3}
+  m_Script: {fileID: 11500000, guid: e6d5f4b1003855f48a5ec74721971cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cardboard: {fileID: 0}
-  Plane: {fileID: 0}
-  StoryPlane: {fileID: 0}
-  Planes: {fileID: 0}
+  WorldScript: {fileID: 570101052}
+  WorldObj: {fileID: 570101051}
+  Plane: {fileID: 372191431}
+  StoryPlane: {fileID: 1209703063}
+  Planes: {fileID: 155007430}
   WormholeTex: {fileID: 2800000, guid: ab35ed6e011c0b641843dd1fc0a7e5e7, type: 3}
-  WebcamTex: {fileID: 0}
-  LoadingRect: {fileID: 0}
-  CalibRect: {fileID: 0}
-  TimeText: {fileID: 0}
+  WebcamTex: {fileID: 184405689}
+  CalibRect: {fileID: 1295057771}
+  CardbordScript: {fileID: 22181933}
   leftCam: {fileID: 442403271}
   rightCam: {fileID: 442403271}
 --- !u!1001 &2036292192
@@ -989,7 +993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2120979959
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,7 +1004,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1502587946}
   - {fileID: 442403265}
+  - {fileID: 1665545391}
   m_Father: {fileID: 0}
   m_RootOrder: 0

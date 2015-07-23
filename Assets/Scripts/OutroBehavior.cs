@@ -261,7 +261,6 @@ public class OutroBehavior : MonoBehaviour {
                 break;
      
             case OutroState.RealMode:
-                Plane.transform.rotation = Quaternion.Euler(270, 0, 0);
 
                 if (Config.CamDataUpdate > 0 && Config.CamDataUpdate > _lastDataCheck)
                 {
@@ -273,7 +272,6 @@ public class OutroBehavior : MonoBehaviour {
                         _webcamTex.Apply();
 
                         WebcamTex.texture = _webcamTex;
-                        _planeRenderer.material.mainTexture = _webcamTex;
                     }
                 }
 

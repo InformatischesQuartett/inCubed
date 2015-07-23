@@ -198,6 +198,7 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Wormhole:
+                Application.LoadLevel("Game");
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed*Time.deltaTime);
 
                 if (_grayScriptLeft.rampOffset >= 0)
@@ -267,9 +268,6 @@ public class IntroBehavior : MonoBehaviour {
 
                     if (StoryPlane.transform.localScale.x >= 0.34f)
                     {
-                        if (_storyPlaneId == 6)
-                            _storyPlaneId = 1;
-
                         if (_storyPlaneId < 6)
                         {
                             _storyPlaneId++;
@@ -299,7 +297,7 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Start:
-                Application.LoadLevel("Game");
+                Application.LoadLevel("Outro");
                 break;
         }
     }
