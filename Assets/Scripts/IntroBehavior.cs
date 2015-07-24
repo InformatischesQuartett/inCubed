@@ -72,8 +72,8 @@ public class IntroBehavior : MonoBehaviour {
         _lastDataCheck = -1;
         _storyPlaneId = 1;
 
-        //_webcamTex = new Texture2D(1920, 1080, TextureFormat.RGBA32, false);
-        _webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
+        _webcamTex = new Texture2D(1920, 1080, TextureFormat.RGBA32, false);
+        //_webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
 
         Planes.SetActive(false);
 
