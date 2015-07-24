@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: a0a22a75ba3375e43b1b267f0bd5192b
+timeCreated: 1437706827
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Joint
+    100002: Joint_1
+    100004: Joint_2
+    100006: Joint_3
+    100008: Joint_3_2
+    100010: Joint_3_3
+    100012: Joint_4
+    100014: Joint_4_2
+    100016: Joint_4_3
+    100018: Joint_4_4
+    100020: Joint_5
+    100022: Joint_5_2
+    100024: Joint_5_3
+    100026: Joint_5_4
+    100028: Joint_6
+    100030: Joint_6_2
+    100032: Joint_7
+    100034: Joint_7_2
+    100036: //RootNode
+    100038: mann2_1
+    100040: Root
+    400000: Joint
+    400002: Joint_1
+    400004: Joint_2
+    400006: Joint_3
+    400008: Joint_3_2
+    400010: Joint_3_3
+    400012: Joint_4
+    400014: Joint_4_2
+    400016: Joint_4_3
+    400018: Joint_4_4
+    400020: Joint_5
+    400022: Joint_5_2
+    400024: Joint_5_3
+    400026: Joint_5_4
+    400028: Joint_6
+    400030: Joint_6_2
+    400032: Joint_7
+    400034: Joint_7_2
+    400036: //RootNode
+    400038: mann2_1
+    400040: Root
+    4300000: mann2_1
+    7400000: C4D Animation Take
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: mann2_1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: C4D Animation Take
+      takeName: C4D Animation Take
+      firstFrame: 5.9000001
+      lastFrame: 25
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mann2_1
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Joint
+        weight: 1
+      - path: Root/Joint/Joint_1
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Joint_5
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_2/Joint_4_2/Joint_5_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_3/Joint_5_3/Joint_6/Joint_7
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2
+        weight: 1
+      - path: Root/Joint/Joint_1/Joint_2/Joint_3_3/Joint_4_4/Joint_5_4/Joint_6_2/Joint_7_2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
