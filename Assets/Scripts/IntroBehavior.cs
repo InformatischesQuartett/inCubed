@@ -298,8 +298,8 @@ public class IntroBehavior : MonoBehaviour {
                 break;
 
             case IntroState.Start:
-                Application.LoadLevel("Game");
                 Config.ResumeOpenCV();
+                Application.LoadLevel("Game");
 
                 break;
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class World : MonoBehaviour
@@ -95,8 +96,66 @@ public class World : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //if (Config.LastShape != _lastShape)
+        if (!IsWorldOpening && Config.LastShape != _lastShape)
+        {
+            var newShape = Config.LastShape;
 
+            if (_lastShape == SHAPETYPE.Star && newShape == SHAPETYPE.Circle)
+                transform.Rotate(new Vector3(-90, 0, 0));
+            if (_lastShape == SHAPETYPE.Star && newShape == SHAPETYPE.Triangle)
+                transform.Rotate(new Vector3(+90, 0, 0));
+            if (_lastShape == SHAPETYPE.Star && newShape == SHAPETYPE.Heptagon)
+                transform.Rotate(new Vector3(0, -90, 0));
+            if (_lastShape == SHAPETYPE.Star && newShape == SHAPETYPE.Rectangle)
+                transform.Rotate(new Vector3(0, +90, 0));
+
+            if (_lastShape == SHAPETYPE.Circle && newShape == SHAPETYPE.Pentagon)
+                transform.Rotate(new Vector3(-90, 0, 0));
+            if (_lastShape == SHAPETYPE.Circle && newShape == SHAPETYPE.Star)
+                transform.Rotate(new Vector3(+90, 0, 0));
+            if (_lastShape == SHAPETYPE.Circle && newShape == SHAPETYPE.Heptagon)
+                transform.Rotate(new Vector3(0, -90, 0));
+            if (_lastShape == SHAPETYPE.Circle && newShape == SHAPETYPE.Rectangle)
+                transform.Rotate(new Vector3(0, +90, 0));
+
+            if (_lastShape == SHAPETYPE.Pentagon && newShape == SHAPETYPE.Triangle)
+                transform.Rotate(new Vector3(-90, 0, 0));
+            if (_lastShape == SHAPETYPE.Pentagon && newShape == SHAPETYPE.Circle)
+                transform.Rotate(new Vector3(+90, 0, 0));
+            if (_lastShape == SHAPETYPE.Pentagon && newShape == SHAPETYPE.Heptagon)
+                transform.Rotate(new Vector3(0, -90, 0));
+            if (_lastShape == SHAPETYPE.Pentagon && newShape == SHAPETYPE.Rectangle)
+                transform.Rotate(new Vector3(0, +90, 0));
+
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Star)
+                transform.Rotate(new Vector3(-90, 0, 0));
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Pentagon)
+                transform.Rotate(new Vector3(+90, 0, 0));
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Heptagon)
+                transform.Rotate(new Vector3(0, -90, 0));
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Rectangle)
+                transform.Rotate(new Vector3(0, +90, 0));
+
+            if (_lastShape == SHAPETYPE.Heptagon && newShape == SHAPETYPE.Circle)
+                transform.Rotate(new Vector3(-90, 0, 0));
+            if (_lastShape == SHAPETYPE.Heptagon && newShape == SHAPETYPE.Triangle)
+                transform.Rotate(new Vector3(+90, 0, 0));
+            if (_lastShape == SHAPETYPE.Heptagon && newShape == SHAPETYPE.Pentagon)
+                transform.Rotate(new Vector3(0, -90, 0));
+            if (_lastShape == SHAPETYPE.Heptagon && newShape == SHAPETYPE.Star)
+                transform.Rotate(new Vector3(0, +90, 0));
+
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Heptagon)
+                transform.Rotate(new Vector3(-90, 0, 0));
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Rectangle)
+                transform.Rotate(new Vector3(+90, 0, 0));
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Pentagon)
+                transform.Rotate(new Vector3(0, -90, 0));
+            if (_lastShape == SHAPETYPE.Triangle && newShape == SHAPETYPE.Star)
+                transform.Rotate(new Vector3(0, +90, 0));
+
+            _lastShape = Config.LastShape;
+        }
 
 //      this.transform.Rotate(inputGamepad.JoystickAxes["LS Y"], inputGamepad.JoystickAxes["LS X"], 0);
 
