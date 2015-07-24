@@ -130,7 +130,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 417548}
-  - 114: {fileID: 11468396}
   m_Layer: 0
   m_Name: Schlange
   m_TagString: Untagged
@@ -287,7 +286,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75.2200012, y: .270000011, z: -1.22000003}
+  m_LocalPosition: {x: 98.5434341, y: 62.8508873, z: -27.85392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 444740}
@@ -465,17 +464,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &11468396
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99af51bcc031a324bae838b4bc9bac5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!137 &13770286
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
