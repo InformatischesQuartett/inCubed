@@ -41,6 +41,7 @@ public class OutroBehavior : MonoBehaviour {
     private float _lastDataCheck;
     private Texture2D _webcamTex;
 
+    private AudioSource _audioSource;
     private Renderer _planeRenderer;
     private Grayscale _grayScriptLeft;
     private Twirl _twirlScriptLeft;
@@ -72,6 +73,9 @@ public class OutroBehavior : MonoBehaviour {
         _webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
 
         Planes.SetActive(false);
+
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = Resources.Load<AudioClip>("Audio/outro");
 
         _planeRenderer = Plane.GetComponent<Renderer>();
 
@@ -171,7 +175,10 @@ public class OutroBehavior : MonoBehaviour {
                 }
 
                 if (_cccScriptLeft.saturation > 0.4f)
+                {
                     _outroState = OutroState.Story;
+                    _audioSource.Play();
+                }
 
                 break;
 

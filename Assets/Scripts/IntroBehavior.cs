@@ -41,6 +41,7 @@ public class IntroBehavior : MonoBehaviour {
     private float _lastDataCheck;
     private Texture2D _webcamTex;
 
+    private AudioSource _audioSource;
     private Renderer _planeRenderer;
     private Grayscale _grayScriptLeft;
     private Twirl _twirlScriptLeft;
@@ -75,6 +76,9 @@ public class IntroBehavior : MonoBehaviour {
         _webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
 
         Planes.SetActive(false);
+
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = Resources.Load<AudioClip>("Audio/intro2");
 
         _planeRenderer = Plane.GetComponent<Renderer>();
 
@@ -241,7 +245,10 @@ public class IntroBehavior : MonoBehaviour {
                 }
 
                 if (_cccScriptLeft.saturation > 0.4f && !_twirlScriptLeft.enabled)
+                {
                     _introState = IntroState.Story;
+                    _audioSource.Play();
+                }
 
                 break;
 
