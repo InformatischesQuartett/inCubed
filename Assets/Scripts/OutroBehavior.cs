@@ -64,7 +64,7 @@ public class OutroBehavior : MonoBehaviour {
 
         _rotSpeed = 10;
         _lastDataCheck = -1;
-        _storyPlaneId = 1;
+        _storyPlaneId = 7;
 
         //_webcamTex = new Texture2D(1920, 1080, TextureFormat.RGBA32, false);
         _webcamTex = new Texture2D(1024, 768, TextureFormat.RGBA32, false);
@@ -76,7 +76,7 @@ public class OutroBehavior : MonoBehaviour {
         StoryPlane.transform.localScale = new Vector3(0.0001f, 0, 0.0001f);
         _tempTargetPos = new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), _planeStartPos.z);
 
-        var nextTex = Resources.Load<Texture2D>("Textures/Credits/Credits1");
+        var nextTex = Resources.Load<Texture2D>("Textures/Story/Story7");
         StoryPlane.GetComponent<Renderer>().material.mainTexture = nextTex;
 
         _cccScriptLeft = leftCam.GetComponent<ColorCorrectionCurves>();
@@ -199,7 +199,7 @@ public class OutroBehavior : MonoBehaviour {
 
                     if (StoryPlane.transform.localScale.x >= 0.34f)
                     {
-                        if (_storyPlaneId < 3)
+                        if (_storyPlaneId < 9)
                         {
                             _storyPlaneId++;
 
