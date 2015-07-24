@@ -18,7 +18,7 @@ public class wincheck : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                Application.LoadLevel(1);
+                Application.LoadLevel(2);
             }
         }
 
