@@ -8,7 +8,7 @@ public class wincheck : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-	
+	    //Config.PauseOpenCV();
 	}
 	
 	// Update is called once per frame
@@ -18,7 +18,7 @@ public class wincheck : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                Application.LoadLevel(2);
+                Application.LoadLevel("Outro");
             }
         }
 

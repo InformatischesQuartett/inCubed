@@ -20,7 +20,7 @@ public static class Config
     public static bool DebugController = false;
     public static bool DebugLight = false;
     public static bool DebugRayTrigger = false;
-    public static bool DebugGamestate = true;
+    public static bool DebugGamestate = false;
     public static bool ShowFps = false;
 
     public static float triggerTimer = 1.3f;

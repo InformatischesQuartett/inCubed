@@ -55,6 +55,7 @@ public class EventController : MonoBehaviour
     void SchaufelShow()
     {
         uicanvas.SendMessage("Display", 1);
+        //Config.ResumeOpenCV();
     }
 
     void StartBurn()

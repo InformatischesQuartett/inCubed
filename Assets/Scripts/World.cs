@@ -96,7 +96,7 @@ public class World : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!IsWorldOpening && Config.LastShape != _lastShape)
+        /*if (!IsWorldOpening && Config.LastShape != _lastShape)
         {
             var newShape = Config.LastShape;
 
@@ -156,7 +156,7 @@ public class World : MonoBehaviour
 
             _lastShape = Config.LastShape;
         }
-
+        */
 //      this.transform.Rotate(inputGamepad.JoystickAxes["LS Y"], inputGamepad.JoystickAxes["LS X"], 0);
 
         switch (_rotationStep)

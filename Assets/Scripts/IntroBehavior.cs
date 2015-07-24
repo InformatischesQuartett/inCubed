@@ -118,6 +118,7 @@ public class IntroBehavior : MonoBehaviour {
 
                     LoadingRect.SetActive(false);
                     CalibRect.SetActive(true);
+                    Application.LoadLevel("Game");
                 }
 
                 break;
