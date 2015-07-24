@@ -29,6 +29,8 @@ public class OutroBehavior : MonoBehaviour {
     public Camera leftCam;
     public Camera rightCam;
 
+    public int[] ClipLength;
+
     private OutroState _outroState;
 
     private float _rotSpeed;
@@ -190,7 +192,7 @@ public class OutroBehavior : MonoBehaviour {
             case OutroState.StoryStay:
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed * Time.deltaTime);
 
-                if (Time.realtimeSinceStartup - _starTime > 5)
+                if (Time.realtimeSinceStartup - _starTime >= ClipLength[_storyPlaneId - 7])
                 {
                     StoryPlane.transform.localScale = Vector3.Lerp(StoryPlane.transform.localScale,
                         _planeTargetSizeMax, Time.deltaTime);

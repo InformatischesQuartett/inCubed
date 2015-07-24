@@ -29,6 +29,8 @@ public class IntroBehavior : MonoBehaviour {
     public Camera leftCam;
     public Camera rightCam;
 
+    public int[] ClipLength;
+
     private IntroState _introState;
 
     private float _rotSpeed;
@@ -260,7 +262,7 @@ public class IntroBehavior : MonoBehaviour {
             case IntroState.StoryStay:
                 Plane.transform.Rotate(new Vector3(0, 1, 0), _rotSpeed * Time.deltaTime);
 
-                if (Time.realtimeSinceStartup - _starTime > 5)
+                if (Time.realtimeSinceStartup - _starTime >= ClipLength[_storyPlaneId-1])
                 {
                     StoryPlane.transform.localScale = Vector3.Lerp(StoryPlane.transform.localScale,
                         _planeTargetSizeMax, Time.deltaTime);

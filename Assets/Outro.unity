@@ -442,6 +442,7 @@ MonoBehaviour:
   CardbordScript: {fileID: 22181933}
   leftCam: {fileID: 1312954885}
   rightCam: {fileID: 98256346}
+  ClipLength: 050000000500000005000000
 --- !u!4 &410109536
 Transform:
   m_ObjectHideFlags: 0
@@ -933,6 +934,7 @@ MonoBehaviour:
   CardbordScript: {fileID: 22181933}
   leftCam: {fileID: 442403271}
   rightCam: {fileID: 442403271}
+  ClipLength: 
 --- !u!1001 &1841770080
 Prefab:
   m_ObjectHideFlags: 0

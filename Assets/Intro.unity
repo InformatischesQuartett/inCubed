@@ -894,7 +894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1350928428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,6 +917,7 @@ MonoBehaviour:
   TimeText: {fileID: 955365921}
   leftCam: {fileID: 1671472768}
   rightCam: {fileID: 489489203}
+  ClipLength: 050000000500000005000000050000000500000005000000
 --- !u!4 &1350928429
 Transform:
   m_ObjectHideFlags: 0
@@ -1003,7 +1004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1593362297
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1069,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: da0b2cf3e6e3061439ce8cb8fc04be24, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da0b2cf3e6e3061439ce8cb8fc04be24, type: 2}
@@ -1415,6 +1416,7 @@ MonoBehaviour:
   TimeText: {fileID: 955365921}
   leftCam: {fileID: 2047779310}
   rightCam: {fileID: 2047779310}
+  ClipLength: 
 --- !u!4 &2132242967
 Transform:
   m_ObjectHideFlags: 0
