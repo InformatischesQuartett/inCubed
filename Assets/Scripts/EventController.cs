@@ -2,7 +2,7 @@
 
 public class EventController : MonoBehaviour
 {
-
+    public GameObject BigLightInTheCenter;
     public GameObject uicanvas;
 
 	// Use this for initialization
@@ -24,9 +24,13 @@ public class EventController : MonoBehaviour
 
     void LetThereBeLight()
     {
-        RenderSettings.ambientIntensity = 1;
-        RenderSettings.reflectionIntensity = 1;
-        RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
+        // This used to work with Unity 5.1.something
+        //RenderSettings.ambientIntensity = 1;
+        //RenderSettings.reflectionIntensity = 1;
+        //RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
+        
+        // Now lets just use a big light in the center of the scene
+        BigLightInTheCenter.SetActive(true);
 
         GameObject.Find("frau_2").SendMessage("dubistneganzliebedrumwinkmalbitte");
     }

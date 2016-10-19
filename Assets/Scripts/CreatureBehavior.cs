@@ -127,7 +127,7 @@ public class CreatureBehavior : MonoBehaviour {
         //    _jumpMode = false;
         //    this.transform.Translate(Vector3.up * Time.deltaTime);
         //}
-        Debug.Log(this.transform.position.y);
+        //Debug.Log(this.transform.position.y);
     }
 
     private void checkCollision()
