@@ -7,15 +7,22 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Prototypes/Input/Input.unity
+    guid: 7fd3602f58621e641b3b61ae7395f5a4
   - enabled: 0
     path: Assets/Prototypes/WorldSetup/WorldSetup.unity
+    guid: 386598b0efd580443ac6c6553a9b1de2
   - enabled: 0
     path: Assets/Prototypes/Intro/Intro.unity
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Prototypes/Outro/Outro.unity
-  - enabled: 0
+    guid: 00000000000000000000000000000000
+  - enabled: 1
     path: Assets/Intro.unity
+    guid: 42a2e975a19b84643b6bfed83f0294cf
   - enabled: 1
     path: Assets/Game.unity
+    guid: 328324ff9b7701746bc96b0776ce8738
   - enabled: 1
     path: Assets/Outro.unity
+    guid: 761cf044f2fc47b4498e1f38f76f1c99
